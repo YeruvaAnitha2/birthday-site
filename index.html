@@ -185,7 +185,8 @@
       document.getElementById("bgMusic").play();
     }
 
-    const meetDate = new Date("2026-12-31").getTime();
+    const today = new Date();
+const meetDate = new Date(today.getFullYear(), 7, 1).getTime(); 
     setInterval(() => {
       const now = new Date().getTime();
       const diff = meetDate - now;
