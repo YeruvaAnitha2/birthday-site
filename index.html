@@ -75,6 +75,10 @@
       cursor: pointer;
     }
 
+    #countdown {
+      margin-top: 10px;
+    }
+
     /* 💌 Envelope */
     .envelope {
       width: 200px;
@@ -127,7 +131,6 @@
       position: fixed;
       width: 10px;
       height: 10px;
-      background: red;
       top: 0;
       animation: fall 3s linear forwards;
       z-index: 999;
@@ -140,6 +143,7 @@
       }
     }
 
+    /* 📱 Mobile */
     @media (max-width: 768px) {
       .mainContent {
         justify-content: center;
@@ -161,9 +165,10 @@
 
   <!-- Tap to start -->
   <div id="startScreen" onclick="startExperience()">
-    Tap to start ❤️
+    Tap to unwrap your surprise 🎁❤️
   </div>
 
+  <!-- Main content -->
   <div class="mainContent" id="mainContent">
     <div class="card">
       <h1>Happy Birthday Bujjiii ❤️</h1>
@@ -173,10 +178,10 @@
       </p>
 
       <p>
-        I miss you and I can't wait to finally see us together 💫
+        I miss you and I can't wait to finally see us together, and hold that moment forever 💫
       </p>
 
-      <!-- 💌 Envelope -->
+      <!-- Envelope -->
       <div class="envelope" onclick="openEnvelope(this)">
         <div class="flap"></div>
         <div class="letter">I LOVE YOU Bujji 💖</div>
@@ -186,36 +191,41 @@
     </div>
   </div>
 
-  <!-- 🎶 Audio -->
+  <!-- Audio -->
   <audio id="bgMusic" loop>
     <source src="Love-Audio.mp4" type="audio/mp4">
   </audio>
 
   <script>
     function startExperience() {
-      document.getElementById("startScreen").style.display = "none";
-      document.getElementById("mainContent").style.display = "flex";
+      launchConfetti(); // 🎉 burst on tap
 
-      document.getElementById("bgMusic").play().catch(() => {});
+      setTimeout(() => {
+        document.getElementById("startScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "flex";
+
+        document.getElementById("bgMusic").play().catch(() => {});
+      }, 800);
     }
 
     function openEnvelope(el) {
       el.classList.add("open");
-      launchConfetti();
     }
 
     function launchConfetti() {
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 50; i++) {
         const conf = document.createElement("div");
         conf.className = "confetti";
         conf.style.left = Math.random() * 100 + "vw";
-        conf.style.background = ["#ff4d6d","#ffd700","#00f","#0f0"][Math.floor(Math.random()*4)];
+        conf.style.background =
+          ["#ff4d6d","#ffd700","#00f","#0f0","#ff69b4"][Math.floor(Math.random()*5)];
         document.body.appendChild(conf);
 
         setTimeout(() => conf.remove(), 3000);
       }
     }
 
+    // Countdown
     const today = new Date();
     const meetDate = new Date(today.getFullYear(), 7, 1).getTime();
 
