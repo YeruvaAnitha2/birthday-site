@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday ❤️</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -11,7 +11,12 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('Lovely.jpeg') no-repeat center center/cover;
+
+      /* ✅ Desktop: no zoom */
+      background: url('Lovely.jpeg') no-repeat center center;
+      background-size: contain;
+      background-color: black;
+
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -72,15 +77,20 @@
       font-size: 14px;
     }
 
-    /* mobile */
+    /* 📱 Mobile */
     @media (max-width: 768px) {
       body {
         justify-content: center;
+        align-items: flex-end; /* ✅ move to bottom */
         padding: 20px;
+
+        /* mobile can look better with cover */
+        background-size: cover;
       }
 
       .card {
         width: 100%;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -95,7 +105,7 @@
     </p>
 
     <p>
-      I miss you and i can't wait to finally see us together,and holding that moment forever 💫
+      I miss you and I can't wait to finally see us together, and hold that moment forever 💫
     </p>
 
     <button onclick="revealMessage()">Open Surprise 🎁</button>
@@ -106,12 +116,12 @@
 
     <div id="countdown"></div>
 
-    <button onclick="playMusic()">Play Music 🎶</button>
+    <button onclick="playMusic()">Play Our Song 🎶❤️</button>
   </div>
 
-  <!-- ✅ YOUR AUDIO FILE -->
+  <!-- 🎶 Audio -->
   <audio id="bgMusic" loop>
-    <source src="Love-Audio.mp4" type="audio/mpeg">
+    <source src="Love-Audio.mp4" type="audio/mp4">
   </audio>
 
   <script>
@@ -119,12 +129,20 @@
       document.getElementById("hiddenMessage").style.display = "block";
     }
 
-   function playMusic() {
-  const music = document.getElementById("bgMusic");
-  music.play().catch(() => {
-    alert("Tap again to play music 🎶");
-  });
-}
+    function playMusic() {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {
+        alert("Tap again to play music 🎶");
+      });
+    }
+
+    // autoplay on first tap anywhere (better UX)
+    document.body.addEventListener("click", () => {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {});
+    }, { once: true });
+
+    // ❤️ Countdown: today → August 1
     const today = new Date();
     const meetDate = new Date(today.getFullYear(), 7, 1).getTime();
 
