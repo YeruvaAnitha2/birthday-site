@@ -119,11 +119,12 @@
       document.getElementById("hiddenMessage").style.display = "block";
     }
 
-    function playMusic() {
-      document.getElementById("bgMusic").play();
-    }
-
-    // ✅ Countdown: today → August 1
+   function playMusic() {
+  const music = document.getElementById("bgMusic");
+  music.play().catch(() => {
+    alert("Tap again to play music 🎶");
+  });
+}
     const today = new Date();
     const meetDate = new Date(today.getFullYear(), 7, 1).getTime();
 
