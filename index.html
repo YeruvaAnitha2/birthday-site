@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday ❤️</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -17,7 +17,6 @@
       justify-content: flex-end;
       height: 100vh;
       overflow: hidden;
-      color: #333;
       padding-right: 60px;
     }
 
@@ -38,42 +37,22 @@
       max-width: 420px;
       background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       padding: 25px;
       border-radius: 20px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.3);
       text-align: center;
       position: relative;
       z-index: 2;
-      animation: fadeIn 1.5s ease-in-out;
       color: white;
     }
 
     h1 {
       font-size: 26px;
-      color: #fff;
-    }
-
-    #typing {
-      font-family: 'Fira Code', monospace;
-      font-size: 13px;
-      background: #111;
-      color: #0f0;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: left;
-      min-height: 100px;
-      margin-top: 10px;
     }
 
     p {
       font-size: 14px;
       line-height: 1.6;
-    }
-
-    .heart {
-      font-size: 26px;
-      animation: beat 1s infinite;
     }
 
     button {
@@ -89,34 +68,11 @@
     }
 
     #countdown {
-      margin-top: 8px;
-      font-size: 13px;
+      margin-top: 10px;
+      font-size: 14px;
     }
 
-    .heart-float {
-      position: absolute;
-      bottom: -20px;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-110vh); opacity: 0; }
-    }
-
-    @keyframes beat {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 📱 Mobile + Tablet */
+    /* mobile */
     @media (max-width: 768px) {
       body {
         justify-content: center;
@@ -125,15 +81,6 @@
 
       .card {
         width: 100%;
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 20px;
-      }
-
-      p {
-        font-size: 13px;
       }
     }
   </style>
@@ -143,20 +90,19 @@
   <div class="card">
     <h1>Happy Birthday, My Love ❤️</h1>
 
-    <p>Even though we’re miles apart, you are always right here in my heart 💕</p>
+    <p>
+      Even though we’re miles apart, you are always right here in my heart 💕
+    </p>
 
-    <p style="margin-top:15px; font-size:15px;">
-      Happy Birthday my love ❤️<br>
-      Even though we are far apart, you are always in my heart 💕<br>
+    <p>
+      Happy Birthday my love ❤️ <br>
       I miss you every day and can't wait to be with you again 💫
     </p>
 
-    <div class="heart">❤️</div>
-
     <button onclick="revealMessage()">Open Surprise 🎁</button>
 
-    <p id="hiddenMessage" style="display:none; margin-top:10px;">
-      You are my forever, my happiness, and my favorite person 💖
+    <p id="hiddenMessage" style="display:none;">
+      You are my forever, my happiness, and my everything 💖
     </p>
 
     <div id="countdown"></div>
@@ -164,13 +110,12 @@
     <button onclick="playMusic()">Play Music 🎶</button>
   </div>
 
- <audio id="bgMusic" loop>
-  <source src="Love-Audio.mp4" type="audio/mpeg">
-</audio>
+  <!-- ✅ YOUR AUDIO FILE -->
+  <audio id="bgMusic" loop>
+    <source src="Love-Audio.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
-    
-
     function revealMessage() {
       document.getElementById("hiddenMessage").style.display = "block";
     }
@@ -179,27 +124,26 @@
       document.getElementById("bgMusic").play();
     }
 
-    const meetDate = new Date("2026-12-31").getTime();
+    // ✅ Countdown: today → August 1
+    const today = new Date();
+    const meetDate = new Date(today.getFullYear(), 7, 1).getTime();
+
     setInterval(() => {
       const now = new Date().getTime();
       const diff = meetDate - now;
+
+      if (diff < 0) {
+        document.getElementById("countdown").innerHTML =
+          "Finally August ❤️";
+        return;
+      }
+
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
 
       document.getElementById("countdown").innerHTML =
-        "Counting days to see you ❤️: " + days + "d " + hours + "h";
+        "Counting days to August 1 ❤️: " + days + "d " + hours + "h";
     }, 1000);
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart-float";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    setInterval(createHeart, 500);
   </script>
 
 </body>
