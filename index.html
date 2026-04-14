@@ -79,53 +79,6 @@
       margin-top: 10px;
     }
 
-    /* 💌 Envelope */
-    .envelope {
-      width: 200px;
-      height: 120px;
-      background: #ff4d6d;
-      margin: 20px auto;
-      position: relative;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .flap {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #ff758c;
-      clip-path: polygon(0 0, 100% 0, 50% 60%);
-      transform-origin: top;
-      transition: transform 1s;
-    }
-
-    .letter {
-      position: absolute;
-      width: 90%;
-      height: 80%;
-      background: white;
-      top: 10%;
-      left: 5%;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: black;
-      font-size: 14px;
-      opacity: 0;
-      transition: 1s;
-    }
-
-    .open .flap {
-      transform: rotateX(180deg);
-    }
-
-    .open .letter {
-      opacity: 1;
-      transform: translateY(-20px);
-    }
-
     /* 🎉 Confetti */
     .confetti {
       position: fixed;
@@ -181,11 +134,11 @@
         I miss you and I can't wait to finally see us together, and hold that moment forever 💫
       </p>
 
-      <!-- Envelope -->
-      <div class="envelope" onclick="openEnvelope(this)">
-        <div class="flap"></div>
-        <div class="letter">I LOVE YOU Bujji 💖</div>
-      </div>
+      <button onclick="revealMessage()">Open Surprise 💌</button>
+
+      <p id="hiddenMessage" style="display:none;">
+        I LOVE YOU Bujji 💖
+      </p>
 
       <div id="countdown"></div>
     </div>
@@ -198,7 +151,7 @@
 
   <script>
     function startExperience() {
-      launchConfetti(); // 🎉 burst on tap
+      launchConfetti();
 
       setTimeout(() => {
         document.getElementById("startScreen").style.display = "none";
@@ -208,8 +161,8 @@
       }, 800);
     }
 
-    function openEnvelope(el) {
-      el.classList.add("open");
+    function revealMessage() {
+      document.getElementById("hiddenMessage").style.display = "block";
     }
 
     function launchConfetti() {
