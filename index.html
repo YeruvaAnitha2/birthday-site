@@ -11,9 +11,7 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('Lovely.jpeg') no-repeat center center;
-      background-size: contain;
-      background-color: black;
+      background: black;
       height: 100vh;
       overflow: hidden;
     }
@@ -33,17 +31,21 @@
       cursor: pointer;
     }
 
-    /* Quiz screen */
+    /* Quiz screen background */
     #quizScreen {
       display: none;
       color: white;
       text-align: center;
       padding: 20px;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+
+      background: url('quiz-bg.jpg') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      z-index: 2;
     }
 
     #options button {
@@ -56,24 +58,31 @@
       cursor: pointer;
     }
 
+    /* Final screen background */
     .mainContent {
       display: none;
-      height: 100%;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       padding-right: 60px;
+
+      background: url('Lovely.jpeg') no-repeat center center;
+      background-size: contain;
+      position: relative;
+      z-index: 2;
     }
 
-   body::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
-  z-index: 0;          /* 👈 move it behind */
-  pointer-events: none; /* 👈 allow clicks through */
-}
+    /* Overlay (only for final screen look) */
+    .mainContent::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
+      pointer-events: none;
+    }
 
     .card {
       width: 90%;
@@ -126,9 +135,6 @@
         justify-content: center;
         align-items: flex-end;
         padding: 20px;
-      }
-
-      body {
         background-size: cover;
       }
 
@@ -151,7 +157,7 @@
     <div id="options"></div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Final Content -->
   <div class="mainContent" id="mainContent">
     <div class="card">
       <h1>Happy Birthday Bujjiii ❤️</h1>
@@ -183,6 +189,7 @@
     function startExperience() {
       launchConfetti();
       document.getElementById("startScreen").style.display = "none";
+      document.getElementById("quizScreen").style.display = "flex";
       showQuestion();
     }
 
@@ -207,8 +214,6 @@
     let currentQ = 0;
 
     function showQuestion() {
-      document.getElementById("quizScreen").style.display = "flex";
-
       const q = questions[currentQ];
       document.getElementById("question").innerText = q.q;
 
