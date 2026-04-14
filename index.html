@@ -145,7 +145,11 @@
 
     <p>Even though we’re miles apart, you are always right here in my heart 💕</p>
 
-    <div id="typing"></div>
+    <p style="margin-top:15px; font-size:15px;">
+      Happy Birthday my love ❤️<br>
+      Even though we are far apart, you are always in my heart 💕<br>
+      I miss you every day and can't wait to be with you again 💫
+    </p>
 
     <div class="heart">❤️</div>
 
@@ -165,17 +169,7 @@
   </audio>
 
   <script>
-    const codeText = `const love = {\n  you: "My Husband ❤️",\n  me: "Forever Yours",\n  distance: "Temporary",\n  connection: "Strong",\n  future: "Together 💍"\n};\n\nwhile(true) {\n  love.grow();\n}`;
-
-    let i = 0;
-    function typeEffect() {
-      if (i < codeText.length) {
-        document.getElementById("typing").innerHTML += codeText.charAt(i);
-        i++;
-        setTimeout(typeEffect, 25);
-      }
-    }
-    typeEffect();
+    
 
     function revealMessage() {
       document.getElementById("hiddenMessage").style.display = "block";
@@ -185,8 +179,7 @@
       document.getElementById("bgMusic").play();
     }
 
-    const today = new Date();
-const meetDate = new Date(today.getFullYear(), 7, 1).getTime(); 
+    const meetDate = new Date("2026-12-31").getTime();
     setInterval(() => {
       const now = new Date().getTime();
       const diff = meetDate - now;
