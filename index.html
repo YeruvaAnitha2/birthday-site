@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday ❤️</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #333;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      text-align: center;
+      max-width: 420px;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #ff4d6d;
+    }
+
+    #typing {
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      background: #111;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: left;
+      min-height: 120px;
+      margin-top: 15px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .heart {
+      font-size: 28px;
+      animation: beat 1s infinite;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #countdown {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Floating hearts */
+    .heart-float {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 0.7; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    @keyframes beat {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Birthday, My Love ❤️</h1>
+
+    <p>
+      Even though we’re miles apart, you are always right here in my heart 💕
+    </p>
+
+    <div id="typing"></div>
+
+    <div class="heart">❤️</div>
+
+    <button onclick="revealMessage()">Open Surprise 🎁</button>
+
+    <p id="hiddenMessage" style="display:none; margin-top:10px;">
+      You are my forever, my happiness, and my favorite person in this world 💖
+    </p>
+
+    <div id="countdown"></div>
+
+    <button onclick="playMusic()">Play Music 🎶</button>
+  </div>
+
+  <!-- Romantic Music (royalty free placeholder) -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Typing effect (developer style)
+    const codeText = `const love = {
+  you: "My Husband ❤️",
+  me: "Forever Yours",
+  distance: "Temporary",
+  connection: "Strong",
+  future: "Together 💍"
+};\n\nwhile(true) {\n  love.grow();\n}`;
+
+    let i = 0;
+    function typeEffect() {
+      if (i < codeText.length) {
+        document.getElementById("typing").innerHTML += codeText.charAt(i);
+        i++;
+        setTimeout(typeEffect, 30);
+      }
+    }
+    typeEffect();
+
+    // Reveal message
+    function revealMessage() {
+      document.getElementById("hiddenMessage").style.display = "block";
+    }
+
+    // Music
+    function playMusic() {
+      document.getElementById("bgMusic").play();
+    }
+
+    // Countdown (change date to when you meet)
+    const meetDate = new Date("2026-12-31").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = meetDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+
+      document.getElementById("countdown").innerHTML =
+        "Counting days to see you ❤️: " + days + "d " + hours + "h";
+    }, 1000);
+
+    // Floating hearts generator
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart-float";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
